@@ -19,18 +19,19 @@ import {
   projectProgram,
 } from '../src/app/component/Notion';
 
-export default function Project({project,index}) {
+export default function Project({databaseData,index}) {
  
-  let [Data,setData] = useState(project); 
-  console.log(Data)
+  let [Data,setData] = useState(databaseData); 
+  setData = Data.props.project
+  console.log(Data.props.project)
 
   return (
       <Layout>
         <div className="items-cente container flex flex-col justify-center min-h-screen px-5 py-24 mx-auto mb-10">
-            <h1 className="sm:text-6xl ml-8 text-4xl">총 프로젝트 : {Data.length}</h1>
+            <h1 className="sm:text-6xl ml-8 text-4xl">총 프로젝트 : {/* {Data.length} */}</h1>
             <div className=" md: md:grid-cols-2 grid grid-cols-1 gap-4 m-6">
-                {project.map((a,index)=>(
-                  <ProjectItem Data={Data} id={Data[index].id} index={index} key={Data[index].id}>
+                {setData.map((a,index)=>(
+                  <ProjectItem Data={setData} index={index} key={index}>
                   </ProjectItem>
                 ))}
 
@@ -45,5 +46,11 @@ export default function Project({project,index}) {
 
 export async function getServerSideProps(context) {
   const databaseData = await getDatabaseData(process.env.NOTION_DATABASE_ID);
-  return databaseData;
+
+
+  
+  return {
+    props: {databaseData}
+    
+  }
 }

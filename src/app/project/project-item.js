@@ -19,8 +19,10 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useMemo } from "react";
 
-function ProjectItem({Data,index,id,project}){
-    // console.log(project);
+function ProjectItem({Data,index,id}){
+    // console.log(Data);
+    // console.log(index)
+    
     return(
         
         <Link href={`/dtl/${index}`} key={index} index={index} className="bg-slate-400 rounded-xl project-card flex flex-col p-6 m-3">

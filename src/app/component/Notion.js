@@ -20,7 +20,7 @@ export async function getDatabaseData(databaseId) {
     aProject
 
   ))
-  console.log(project)
+  // console.log(project)
   const projectID = response.results.map((aProject)=>(
     aProject.id
   ))
