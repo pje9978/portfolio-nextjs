@@ -20,7 +20,7 @@ import { useState, useEffect } from 'react';
 import { useMemo } from "react";
 
 function ProjectItem({Data,index,id}){
-    // console.log(Data);
+    console.log(Data);
     // console.log(index)
     
     return(
@@ -121,7 +121,7 @@ function ProjectDtl({item,index,color}){
                                 <span className="tool ml-auto text-gray-900 flex flex-wrap justify-end gap-1 " key={index}>
                                     {tool.map((tools, index) => {
                                         console.log(tools.color)
-                                        const colorBadge = `inline-flex items-center rounded-md px-2 py-1 text-xs font-medium  ring-1 ring-inset ring-gray-500/10 ${tools.color === 'red' ? 'bg-red-50 text-red-600' : tools.color === 'yellow' ? 'bg-yellow-50 text-yellow-600' : tools.color === 'yellow' ? 'bg-yellow-50 text-yellow-600' : ''}`
+                                        const colorBadge = `inline-flex items-center rounded-md px-2 py-1 text-xs font-medium  ring-1 ring-inset ring-gray-500/10 ${tools.color === 'red' ? 'bg-red-50 text-red-600' : tools.color === 'yellow' ? 'bg-yellow-50 text-yellow-600' : tools.color === 'blue' ? 'bg-blue-50 text-blue-600' : ''}`
 
                                         return(
                                             <span key={index} data-color={tools.color} className={`${colorBadge}`} /* className="" */>
