@@ -17,8 +17,7 @@ useState
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
- 
-
+import { useMemo } from "react";
 
 function ProjectItem({Data,index,id,project}){
     // console.log(project);
@@ -62,7 +61,6 @@ function ProjectDtl({item,index,color}){
         setSort(sortedArray);
 
     });
-
 
 
     return(
@@ -111,8 +109,8 @@ function ProjectDtl({item,index,color}){
 
                                 <span className="tool ml-auto text-gray-900 flex flex-wrap justify-end gap-1 " key={index}>
                                     {tool.map((tools, index) => {
- 
-                                        const colorBadge =`inline-flex items-center rounded-md bg-${tools.color}-50 px-2 py-1 text-xs font-medium text-${tools.color}-600 ring-1 ring-inset ring-gray-500/10`
+                                        console.log(tools.color)
+                                        const colorBadge =`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium  ring-1 ring-inset ring-gray-500/10 bg-${tools.color}-50 text-${tools.color}-600 `
                                         return(
                                             <span key={index} data-color={tools.color} className={`${colorBadge}`} /* className="" */>
                                                 {tools.name}
