@@ -49,7 +49,8 @@ function ProjectDtl({item,index,color}){
     const categroy = item.project[index].properties["분류"].select.name
     const part = item.project[index].properties["분야"].multi_select
     const tool = item.project[index].properties["tool"].multi_select
-    const desc = item.project[index].properties["한줄소개"].rich_text[0].plain_text
+    // const desc = item.project[index].properties["한줄소개"].rich_text[0].plain_text
+    const desc = item.project[index].properties["한줄소개"].rich_text[0]
     const url = item.project[index].properties["파일과 미디어"].files
     
     
@@ -58,7 +59,7 @@ function ProjectDtl({item,index,color}){
     const hiddenClass = !thumb ? "hidden" : "";
 
 
-    console.log(item.project[index].cover)
+    console.log(desc)
 
     
     const [sort, setSort] = useState([]);
@@ -77,7 +78,7 @@ function ProjectDtl({item,index,color}){
                 <div className="container lg:h-screen mx-auto my-auto py-16 px-5">
                     <div className="lg:flex-row flex flex-col gap-6 items-center justify-center">
                         {typeof spec !== "null" && (
-                            <Image alt="전자상거래" className={`lg:w-1/2 rounded-md w-full ${hiddenClass}`}  src={thumb === null ? "": thumb.file.url } width={500} height={500}></Image>
+                            <Image alt="전자상거래" className={`lg:w-1/2 rounded-md w-full ${hiddenClass}`}  src={thumb === null ? '': thumb.file.url } width={500} height={500}></Image>
                         )}
                         <div className="lg:w-1/2 lg:pr-10 lg:py-6 lg:mb-0 w-full mb-6">
                             <h2 className="title-font text-sm tracking-widest text-gray-500 text-center lg:text-left ">
@@ -106,7 +107,7 @@ function ProjectDtl({item,index,color}){
 
                             </div> */}
                             <p className="mb-4 leading-relaxed w-full bg-white/60 rounded-md text-center p-4 lg:text-left lg:bg-white/0 lg:p-0">
-                                <font style={{verticalAlign: `inherit`}} key={index}>{desc}</font>
+                                <font style={{verticalAlign: `inherit`}} key={index}>{desc === undefined ? "" : desc.plain_text}</font>
                             </p>
                             <div className="flex py-2 border-t border-gray-200">
                                 <span className="  text-gray-500 lg:w-1/3 text-sm" >
