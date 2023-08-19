@@ -51,9 +51,16 @@ function ProjectDtl({item,index,color}){
     const tool = item.project[index].properties["tool"].multi_select
     const desc = item.project[index].properties["한줄소개"].rich_text[0].plain_text
     const url = item.project[index].properties["파일과 미디어"].files
-    const thumb = item.project[index].cover.file.url
-    console.log(categroy)
+    
+    
+    const thumb = item.project[index].cover
+    const thumbUrl = thumb ? thumb.file.url : "";
+    const hiddenClass = !thumb ? "hidden" : "";
 
+
+    console.log(item.project[index].cover)
+
+    
     const [sort, setSort] = useState([]);
     useEffect(() => {
         const sortedArray = tool.sort((a, b) => (a.color > b.color ? -1 : 1));
@@ -62,13 +69,15 @@ function ProjectDtl({item,index,color}){
 
     });
 
+
+
     return(
         <>
             <section className="text-gray-600 body-font overflow-hidden"> 
                 <div className="container lg:h-screen mx-auto my-auto py-16 px-5">
                     <div className="lg:flex-row flex flex-col gap-6 items-center justify-center">
                         {typeof spec !== "null" && (
-                            <Image alt="전자상거래" className="lg:w-1/2 rounded-md w-full"  src={thumb} width={500} height={500}></Image>
+                            <Image alt="전자상거래" className={`lg:w-1/2 rounded-md w-full ${hiddenClass}`}  src={thumb === null ? "": thumb.file.url } width={500} height={500}></Image>
                         )}
                         <div className="lg:w-1/2 lg:pr-10 lg:py-6 lg:mb-0 w-full mb-6">
                             <h2 className="title-font text-sm tracking-widest text-gray-500 text-center lg:text-left ">
@@ -109,7 +118,6 @@ function ProjectDtl({item,index,color}){
                                 <span className="tool ml-auto text-gray-900 flex flex-wrap justify-end gap-1 " key={index}>
                                     {tool.map((tools, index) => {
                                         console.log(tools.color)
-                                        // const colorBadge =`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium  ring-1 ring-inset ring-gray-500/10 bg-${tools.color}-50 text-${tools.color}-600 `
                                         const colorBadge = `inline-flex items-center rounded-md px-2 py-1 text-xs font-medium  ring-1 ring-inset ring-gray-500/10 ${tools.color === 'red' ? 'bg-red-50 text-red-600' : tools.color === 'yellow' ? 'bg-yellow-50 text-yellow-600' : tools.color === 'yellow' ? 'bg-yellow-50 text-yellow-600' : ''}`
 
                                         return(
